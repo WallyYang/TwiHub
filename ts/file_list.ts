@@ -22,4 +22,10 @@ export class FileList {
             file.select(top, bottom);
         }
     }
+
+    public deselect(): void {
+        for (const file of this.files) {
+            file.deselect();
+        }
+    }
 }

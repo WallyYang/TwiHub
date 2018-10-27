@@ -70,4 +70,10 @@ export class FileEntry {
             line.select(top, bottom);
         }
     }
+
+    public deselect(): void {
+        for (const line of this.lines) {
+            line.deselect();
+        }
+    }
 }

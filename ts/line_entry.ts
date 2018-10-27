@@ -54,4 +54,8 @@ export class LineEntry {
 
         this.selected = top <= bound.bottom && bottom >= bound.top;
     }
+
+    public deselect(): void {
+        this.selected = false;
+    }
 }
