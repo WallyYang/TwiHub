@@ -6,7 +6,7 @@
         "activeTab",
         "declarativeContent",
         "storage",
-        "http://laurence.tk:21027/*"
+        "https://cidb.cf:21027/*"
     ],
     "content_scripts": [
         {
