@@ -1,0 +1,6 @@
+# TwiHub
+
+## Build
+```bash
+tsc
+```
