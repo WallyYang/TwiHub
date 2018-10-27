@@ -1,6 +1,6 @@
 # TwiHub
 
-![logo](logo/logo.jpg =250x250)
+![logo](logo/logo.png)
 
 ## Build
 
