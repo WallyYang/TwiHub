@@ -14,21 +14,24 @@ orgIn = 100*rand(length,1)-80;
 orgIn = round(orgIn, 0);
 orgIn(orgIn<0) = 0;
 figure(1)
+clf
+ax(1) = subplot(211);
 stem(orgIn)
-% xlabel('Column Number')
-% ylabel('# of Likes')
-title('Original Input')
+grid; grid minor
+xlabel('Column Number');ylabel('# of Likes');title('Original Input')
 %%%%%%%%%%%%%%%%% End Input Generation %%%%%%%%%%%%%%%%%%%%%%%
 
 % Heat map
 % # of adjuncent point taken into consideration for heat map
-N = 2;
-newInd = 1:0.1:length;
-heatmapVector = interp1(index, orgIn, newInd);
-heatmapVector = movmean(heatmapVector, 10)
+newInd = 1:0.1:length; % new index used for interpolation
+heatmapVector = interp1(index, orgIn, newInd); % interpol genrate trangular shape
+heatmapVector = movmean(heatmapVector, 8); % moving avg create spline style
 
-figure(2)
-clf
+% Plot generated heat map curve
+ax(2) = subplot(212);
 hold on
 stem(newInd, heatmapVector, 'b')
-title('Zero Removal')
+title('Heat Map');xlabel('Column Position');ylabel('Heat');
+grid; grid minor
+
+linkaxes(ax, 'x') % link axis
