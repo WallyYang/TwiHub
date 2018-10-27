@@ -2,14 +2,28 @@
     "name": "TwiHub",
     "version": "0.01",
     "description": "Share code",
-    "background": {
-        "scripts": [
-            "js/twicode.js",
-            "js/code_structure.js",
-            "js/like_popup.js",
-            "js/rendering.js"
-        ],
-        "persistent": false
+    "permissions": ["activeTab", "declarativeContent", "storage"],
+    "page_action": {
+        "default_icon": {
+            "16": "images/get_started16.png",
+            "32": "images/get_started32.png",
+            "48": "images/get_started48.png",
+            "128": "images/get_started128.png"
+        }
     },
+    "icons": {
+        "16": "images/get_started16.png",
+        "32": "images/get_started32.png",
+        "48": "images/get_started48.png",
+        "128": "images/get_started128.png"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": ["js/like_popup.js"]
+        }
+    ],
     "manifest_version": 2
 }
