@@ -10,16 +10,23 @@ length = 100;
 index = 1:length;
 
 % make orgIn int and spread out
-orgIn = 100*rand(length,1)-80;
-orgIn = round(orgIn, 0);
-orgIn(orgIn<0) = 0;
+% orgIn = 100*rand(length,1)-80;
+% orgIn = round(orgIn, 0);
+% orgIn(orgIn<0) = 0;
+
+orgIn(1:length) = 0;
+orgIn(20:30) = 5;
+orgIn(28:32) = 10;
+
+orgIn(60:61) = 10;
+
 figure(1)
 clf
 ax(1) = subplot(211);
 hold on
 stem(orgIn)
 grid; grid minor
-xlabel('Column Number');ylabel('# of Likes');title('Original Input')
+xlabel('Line Number');ylabel('# of Likes');title('Original Input')
 %%%%%%%%%%%%%%%%% End Input Generation %%%%%%%%%%%%%%%%%%%%%%%
 % Heat map
 % # of adjuncent point taken into consideration for heat map
@@ -30,7 +37,7 @@ heatmapVector = movmean(heatmapVector, 5); % moving avg create spline style
 % Plot generated heat map curve
 ax(2) = subplot(212);
 hold on
-plot(newInd, heatmapVector, '-xm')
+% plot(newInd, heatmapVector, '-xm')
 title('Heat Map');xlabel('Column Position');ylabel('Heat');
 grid; grid minor
 
@@ -47,6 +54,6 @@ outTest = mInterpl(index, orgIn, hmInd);
 % plot(hmInd, outTest, '-ob')
 
 outTestAvg = mMovAvg(outTest, 8);
-subplot(211)
+subplot(212)
 plot(hmInd+pixInd, outTestAvg, '-ob')
 % Test if manually compute result match expected output
