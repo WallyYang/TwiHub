@@ -15,19 +15,21 @@ function mouseDown(event: MouseEvent) {
 
 function mouseUp(event: MouseEvent) {
     if (initEvent !== null) {
-        if (event.screenX === initEvent.screenX && event.screenY === initEvent.screenY) {
+        if (event.clientX === initEvent.clientX && event.clientY === initEvent.clientY) {
             fileCollection.deselect();
         } else {
             fileCollection.select(
-                Math.min(event.screenY, initEvent.screenY),
-                Math.max(event.screenY, initEvent.screenY)
+                Math.min(event.clientY, initEvent.clientY),
+                Math.max(event.clientY, initEvent.clientY)
             );
 
             for (const file of fileCollection.files) {
                 let code = '';
 
                 for (const line of file.lines) {
-                    code += line.code + '\n';
+                    if (line.selected) {
+                        code += line.code + '\n';
+                    }
                 }
 
                 const http = new XMLHttpRequest();
