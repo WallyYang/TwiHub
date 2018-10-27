@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "target": "es2015",
+        "outDir": "js"
+    },
+    "include": [
+        "ts/*",
+        "lib/*"
+    ]
+}
