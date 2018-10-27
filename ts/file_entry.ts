@@ -64,4 +64,10 @@ export class FileEntry {
             }
         }
     }
+
+    public select(top: number, bottom: number): void {
+        for (const line of this.lines) {
+            line.select(top, bottom);
+        }
+    }
 }

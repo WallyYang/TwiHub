@@ -16,4 +16,10 @@ export class FileList {
             this.files.push(new FileEntry(<HTMLDivElement> fileElement));
         }
     }
+
+    public select(top: number, bottom: number): void {
+        for (const file of this.files) {
+            file.select(top, bottom);
+        }
+    }
 }

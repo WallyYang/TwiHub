@@ -6,6 +6,8 @@ export class LineEntry {
     public code: string;
     public diffCommit: string | null;
 
+    public selected: boolean;
+
     constructor(lineElement: HTMLTableRowElement) {
         this.element = lineElement;
 
@@ -45,5 +47,11 @@ export class LineEntry {
 
             this.code = (<HTMLTableCellElement> codeElement).innerText;
         }
+    }
+
+    public select(top: number, bottom: number): void {
+        const bound = this.element.getBoundingClientRect();
+
+        this.selected = top <= bound.bottom && bottom >= bound.top;
     }
 }
