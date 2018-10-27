@@ -20,7 +20,7 @@
                 "js/file_entry.js",
                 "js/file_collection.js",
                 "js/popup.js",
-                "js/rendering.js"
+                "js/rendering.js",
                 "js/main.js"
             ]
         }
