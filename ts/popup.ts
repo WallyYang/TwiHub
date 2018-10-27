@@ -28,15 +28,17 @@ function initMouseEvents(url: string, fileCollection: FileCollection) {
                         }
                     }
 
-                    const xhr = new XMLHttpRequest();
-
-                    xhr.open('POST', url + '/like', true);
-                    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-                    xhr.setRequestHeader('X-LAURENCE', '6');
-                    xhr.send(JSON.stringify({
-                        'Repo': file.info.user + '/' + file.info.repo,
-                        'Code': code,
-                    }));
+                    fetch(url + '/like', {
+                        method: 'POST',
+                        mode: "cors",
+                        headers: {
+                            'Content-type': 'application/x-www-form-urlencoded',
+                        },
+                        body: JSON.stringify({
+                            'Repo': file.info.user + '/' + file.info.repo,
+                            'Code': code,
+                        }),
+                    });
                 }
             }
         }
