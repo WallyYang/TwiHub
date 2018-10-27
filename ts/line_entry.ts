@@ -1,6 +1,6 @@
 'use strict';
 
-export class LineEntry {
+class LineEntry {
     public element: HTMLTableRowElement;
     public line: number;
     public code: string;
@@ -24,9 +24,9 @@ export class LineEntry {
             if (numElement.hasAttribute('id')) {
                 const attribute = numElement.getAttribute('id');
 
-                console.assert(attribute.startsWith('diff-'));
-
-                this.diffCommit = attribute.slice('diff-'.length);
+                if (attribute.startsWith('diff-')) {
+                    this.diffCommit = attribute.slice('diff-'.length);
+                }
             }
 
             if (numElement.hasAttribute('data-line-number')) {
@@ -53,5 +53,9 @@ export class LineEntry {
         const bound = this.element.getBoundingClientRect();
 
         this.selected = top <= bound.bottom && bottom >= bound.top;
+    }
+
+    public deselect(): void {
+        this.selected = false;
     }
 }

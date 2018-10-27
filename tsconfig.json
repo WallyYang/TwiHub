@@ -1,10 +1,10 @@
 {
     "compilerOptions": {
         "target": "es2015",
-        "outDir": "js"
+        "outDir": "js",
+        "module": "none"
     },
     "include": [
-        "ts/*",
-        "lib/*"
+        "ts/*"
     ]
 }
