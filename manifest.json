@@ -2,5 +2,9 @@
     "name": "TwiHub",
     "version": "0.01",
     "description": "Share code",
+    "twicode": {
+        "scripts": ["js/twicode.js"],
+        "persistent": false
+    },
     "manifest_version": 2
 }
