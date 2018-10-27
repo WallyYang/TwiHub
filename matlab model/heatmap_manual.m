@@ -16,6 +16,7 @@ orgIn(orgIn<0) = 0;
 figure(1)
 clf
 ax(1) = subplot(211);
+hold on
 stem(orgIn)
 grid; grid minor
 xlabel('Column Number');ylabel('# of Likes');title('Original Input')
@@ -24,7 +25,7 @@ xlabel('Column Number');ylabel('# of Likes');title('Original Input')
 % # of adjuncent point taken into consideration for heat map
 newInd = 1:0.1:length; % new index used for interpolation
 heatmapVector = interp1(index, orgIn, newInd); % interpol genrate trangular shape
-% heatmapVector = movmean(heatmapVector, 8); % moving avg create spline style
+heatmapVector = movmean(heatmapVector, 5); % moving avg create spline style
 
 % Plot generated heat map curve
 ax(2) = subplot(212);
@@ -43,6 +44,9 @@ hmInd = 1:pixInd:length; % generate heatmap index
 
 % create function hmHeight = mInterp(oriIndex, oriData, querryPt)
 outTest = mInterpl(index, orgIn, hmInd);
-plot(hmInd, outTest, '-ob')
+% plot(hmInd, outTest, '-ob')
 
+outTestAvg = mMovAvg(outTest, 8);
+subplot(211)
+plot(hmInd+pixInd, outTestAvg, '-ob')
 % Test if manually compute result match expected output
