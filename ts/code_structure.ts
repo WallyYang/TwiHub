@@ -12,14 +12,30 @@ class LineEntry {
         const numElements = lineElement.getElementsByClassName('blob-num');
         console.assert(numElements.length === 1 || numElements.length === 2, <any> numElements);
 
+        let lineDone = false;
+
+        this.diffCommit = null;
+
         for (const numElement of numElements) {
             console.assert(numElement instanceof HTMLTableCellElement, <any> numElement);
 
+            if (numElement.hasAttribute('id')) {
+                const attribute = numElement.getAttribute('id');
+
+                console.assert(attribute.startsWith('diff-'));
+
+                this.diffCommit = attribute.slice('diff-'.length);
+            }
+
             if (numElement.hasAttribute('data-line-number')) {
-                this.line = parseInt(numElement.getAttribute('data-line-number'), 10);
+                const attribute = numElement.getAttribute('data-line-number');
+
+                this.line = parseInt(attribute, 10);
+
+                lineDone = true;
             }
         }
-        console.assert(this.line !== undefined, <any> numElements);
+        console.assert(lineDone, <any> numElements);
 
         const codeElements = lineElement.getElementsByClassName('blob-code');
         console.assert(codeElements.length === 1, <any> codeElements);
@@ -52,27 +68,29 @@ class FileEntry {
             const buttonElements = actionElement.getElementsByClassName('btn');
             console.assert(buttonElements.length > 0, <any> buttonElements);
 
-            let pathname = null;
+            let pathDone = null;
 
             for (const buttonElement of buttonElements) {
                 console.assert(buttonElement instanceof HTMLAnchorElement, <any> buttonElement);
 
-                const newPathname = (<HTMLAnchorElement> buttonElement).pathname;
+                const sections = (<HTMLAnchorElement> buttonElement).pathname.split('/');
+                console.assert(sections.length > 5, <any> sections);
 
-                if (pathname === null) {
-                    pathname = newPathname;
+                if (pathDone) {
+                    console.assert(this.user === sections[1], this.user, sections[1]);
+                    console.assert(this.repo === sections[2], this.repo, sections[2]);
+                    console.assert(this.commit === sections[4], this.commit, sections[4]);
+                    console.assert(this.path === sections.slice(5).join('/'), this.path, sections.slice(5).join('/'));
                 } else {
-                    console.assert(pathname === newPathname, pathname, newPathname);
+                    this.user = sections[1];
+                    this.repo = sections[2];
+                    this.commit = sections[4];
+                    this.path = sections.slice(5).join('/');
+
+                    pathDone = true;
                 }
             }
-
-            const sections = pathname.split('/');
-            console.assert(sections.length > 5, <any> sections);
-
-            this.user = sections[1];
-            this.repo = sections[2];
-            this.commit = sections[4];
-            this.path = sections.slice(5).join('/');
+            console.assert(pathDone, <any> buttonElements);
         }
 
         const dataElements = fileElement.getElementsByClassName('data');
@@ -86,7 +104,7 @@ class FileEntry {
             const lineElements = dataElement.getElementsByTagName('tr');
 
             for (const lineElement of lineElements) {
-                console.assert(dataElement instanceof HTMLTableRowElement, <any> dataElement);
+                console.assert(lineElement instanceof HTMLTableRowElement, <any> lineElement);
 
                 this.lines.push(new LineEntry(<HTMLTableRowElement> lineElement));
             }
