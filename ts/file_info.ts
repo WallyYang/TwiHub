@@ -1,6 +1,6 @@
 'use strict';
 
-export class FileInfo {
+class FileInfo {
     public element: HTMLDivElement;
     public user: string;
     public repo: string;

@@ -1,12 +1,12 @@
 'use strict';
 
-import { FileEntry } from './file_entry';
+/// <reference path="./file_entry.ts"/>
 
-export class FileList {
+class FileCollection {
     public files: FileEntry[];
 
-    constructor() {
-        const fileElements = document.getElementsByClassName('file');
+    constructor(body: HTMLBodyElement) {
+        const fileElements = body.getElementsByClassName('file');
 
         this.files = [];
 

@@ -1,9 +1,9 @@
 'use strict';
 
-import { FileInfo } from './file_info';
-import { LineEntry } from './line_entry';
+/// <reference path="./file_info.ts"/>
+/// <reference path="./line_entry.ts"/>
 
-export class FileEntry {
+class FileEntry {
     public element: HTMLDivElement;
     public info: FileInfo;
     public lines: LineEntry[];
