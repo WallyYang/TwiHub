@@ -2,8 +2,13 @@
     "name": "TwiHub",
     "version": "0.01",
     "description": "Share code",
-    "twicode": {
-        "scripts": ["js/twicode.js"],
+    "background": {
+        "scripts": [
+            "js/twicode.js",
+            "js/code_structure.js",
+            "js/like_popup.js",
+            "js/rendering.js"
+        ],
         "persistent": false
     },
     "manifest_version": 2
