@@ -6,11 +6,7 @@ function createButton(x: number, y: number): void {
 
     button.appendChild(text);
     button.setAttribute('id', 'like');
-
-    console.log(x);
-    console.log(y);
-    console.log(window.innerWidth);
-    console.log(window.innerHeight);
+    button.onclick = like;
 
     button.style['position'] = 'absolute';
     button.style['left'] = (x - 55).toString() + 'px';
@@ -32,6 +28,10 @@ function removeButton(): void {
         button.parentNode.removeChild(button);
         button = document.getElementById('like');
     }
+}
+
+function like() {
+
 }
 
 function initMouseEvents(): void {
