@@ -12,10 +12,10 @@ function createButton(x: number, y: number) {
     console.log(window.innerWidth);
     console.log(window.innerHeight);
 
-    button.style.position = 'absolute';
-    button.style.width = '50px';
-    button.style.left = (x - 55).toString() + 'px';
-    button.style.top = (y - 30).toString() + 'px';
+    button.style['position'] = 'absolute';
+    button.style['width'] = '50px';
+    button.style['left'] = (x - 55).toString() + 'px';
+    button.style['top'] = (y - 30).toString() + 'px';
 
     const body = document.body;
 
@@ -48,17 +48,19 @@ function initMouseEvents(url: string, fileCollection: FileCollection) {
                         }
                     }
 
-                    fetch(url + '/like', {
-                        method: 'POST',
-                        mode: 'cors',
-                        headers: {
-                            'Content-type': 'application/x-www-form-urlencoded',
-                        },
-                        body: JSON.stringify({
-                            'Repo': file.info.user + '/' + file.info.repo,
-                            'Code': code,
-                        }),
-                    });
+                    if (code !== '') {
+                        fetch(url + '/like', {
+                            method: 'POST',
+                            mode: 'cors',
+                            headers: {
+                                'Content-type': 'application/x-www-form-urlencoded',
+                            },
+                            body: JSON.stringify({
+                                'Repo': file.info.user + '/' + file.info.repo,
+                                'Code': code,
+                            }),
+                        });
+                    }
                 }
 
                 createButton(event.pageX, event.pageY);

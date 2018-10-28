@@ -2,27 +2,25 @@
 
 function initGraph(fileCollection: FileCollection) {
     for (const file of fileCollection.files) {
-        for (const line of file.lines) {
-            const cellElement = document.createElement('td');
+        const dataElements = file.element.getElementsByClassName('data');
+        console.assert(dataElements.length === 1, <any>dataElements);
 
-            cellElement.classList.add('blob-num');
-            cellElement.classList.add('canvas-cell');
-            cellElement.style.width = '75px';
-            cellElement.style.height = '20px';
+        for (const dataElement of dataElements) {
+            console.assert(dataElement instanceof HTMLDivElement, <any>dataElement);
+
+            (<HTMLDivElement>dataElement).style['padding-left'] = '75px';
 
             const canvasElement = document.createElement('canvas');
 
-            canvasElement.style.position = 'absolute';
-            canvasElement.style.width = '75px';
-            canvasElement.style.height = '20px';
-            // canvasElement.style.background = 'black';
+            canvasElement.style['position'] = 'absolute';
+            canvasElement.style['left'] = '0';
+            canvasElement.style['top'] = '0';
+            canvasElement.style['width'] = '75px';
+            canvasElement.style['height'] = '100%';
 
-            cellElement.appendChild(canvasElement);
-
-            line.element.insertBefore(cellElement, line.element.childNodes[0]);
+            dataElement.appendChild(canvasElement);
         }
     }
-
 };
 
 function fetchAndRender(url: string, fileCollection: FileCollection) {
