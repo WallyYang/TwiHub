@@ -1,10 +1,18 @@
 'use strict';
 
 class FileCollection {
+    public user: string;
+    public repo: string;
     public files: FileEntry[];
 
     constructor() {
         const fileElements = document.body.getElementsByClassName('file');
+
+        const sections = window.location.pathname.split('/');
+        console.assert(sections.length > 3, <any>sections);
+
+        this.user = sections[1];
+        this.repo = sections[2];
 
         this.files = [];
 

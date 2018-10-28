@@ -43,13 +43,13 @@ function initMouseEvents(url: string, fileCollection: FileCollection) {
                     let code = '';
 
                     for (const line of file.lines) {
-                        if (line.selected && line.diffCommit === null) {
+                        if (line.selected && line.line !== null) {
                             code += line.code + '\n';
                         }
                     }
 
                     if (code !== '') {
-                        sendLike(file.info.user + '/' + file.info.repo, code);
+                        sendLike(fileCollection.user + '/' + fileCollection.repo, code);
                     }
                 }
 

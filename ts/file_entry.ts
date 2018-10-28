@@ -2,20 +2,10 @@
 
 class FileEntry {
     public element: HTMLDivElement;
-    public info: FileInfo;
     public lines: LineEntry[];
 
     constructor(fileElement: HTMLDivElement) {
         this.element = fileElement;
-
-        const actionElements = fileElement.getElementsByClassName('file-actions');
-        console.assert(actionElements.length === 1, <any>actionElements);
-
-        for (const actionElement of actionElements) {
-            console.assert(actionElement instanceof HTMLDivElement, <any>actionElement);
-
-            this.info = new FileInfo(<HTMLDivElement>actionElement);
-        }
 
         const dataElements = fileElement.getElementsByClassName('data');
         console.assert(dataElements.length === 1, <any>dataElements);
@@ -30,7 +20,9 @@ class FileEntry {
             for (const lineElement of lineElements) {
                 console.assert(lineElement instanceof HTMLTableRowElement, <any>lineElement);
 
-                this.lines.push(new LineEntry(<HTMLTableRowElement>lineElement));
+                if (lineElement.attributes.length === 0) {
+                    this.lines.push(new LineEntry(<HTMLTableRowElement>lineElement));
+                }
             }
         }
     }
