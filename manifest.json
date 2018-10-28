@@ -15,7 +15,6 @@
                 "*://*.github.com/*"
             ],
             "js": [
-                "js/file_info.js",
                 "js/line_entry.js",
                 "js/file_entry.js",
                 "js/file_collection.js",

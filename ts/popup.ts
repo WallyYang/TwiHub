@@ -35,6 +35,7 @@ function initMouseEvents(): void {
         if (initEvent !== null) {
             if (Math.abs(event.pageX - initEvent.pageX) + Math.abs(event.pageY - initEvent.pageY) >= 32) {
                 fileCollection.deselect();
+                createButton(event.pageX, event.pageY);
             } else {
                 fileCollection.select(
                     Math.min(event.pageY, initEvent.pageY),
@@ -55,7 +56,6 @@ function initMouseEvents(): void {
                     }
                 }
 
-                createButton(event.pageX, event.pageY);
             }
         }
     }
