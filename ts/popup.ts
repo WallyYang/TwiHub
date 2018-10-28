@@ -56,7 +56,12 @@ function initMouseEvents(): void {
                     }
                 }
 
+                let button = document.getElementById('like');
+                if (button !== null) {
+                    button.parentNode.removeChild(button);
+                }
             }
+
         }
     }
 
