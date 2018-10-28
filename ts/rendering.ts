@@ -71,6 +71,8 @@ function fetchAndRender(fileCollection: FileCollection): void {
                     canvasElement.width = canvasElement.clientWidth;
                     canvasElement.height = canvasElement.clientHeight;
 
+                    const canvasBound = canvasElement.getBoundingClientRect();
+
                     const context = (<HTMLCanvasElement>canvasElement).getContext('2d');
                     const imageData = context.createImageData(1, 1);
 
@@ -87,12 +89,12 @@ function fetchAndRender(fileCollection: FileCollection): void {
                         imageData.data[3] = 255;
 
                         for (let j = 0; j < Math.floor(limit); j += 1) {
-                            context.putImageData(imageData, j, canvasElement.height - lines.length + i);
+                            context.putImageData(imageData, j, first - canvasBound.top + i);
                         }
 
                         imageData.data[3] = 255 * (limit - Math.floor(limit));
 
-                        context.putImageData(imageData, Math.floor(limit), canvasElement.height - lines.length + i);
+                        context.putImageData(imageData, Math.floor(limit), first - canvasBound.top + i);
                     }
                 }
             }
