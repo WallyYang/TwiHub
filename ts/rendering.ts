@@ -1,7 +1,5 @@
 'use strict';
 
-/// <reference path="./file_collection.ts"/>
-
 function fetchAndRender(url: string, fileCollection: FileCollection) {
     for (const file of fileCollection.files) {
         let code = '';
@@ -14,7 +12,7 @@ function fetchAndRender(url: string, fileCollection: FileCollection) {
 
         fetch(url + '/render', {
             method: 'POST',
-            mode: "cors",
+            mode: 'cors',
             headers: {
                 'Content-type': 'application/x-www-form-urlencoded',
             },

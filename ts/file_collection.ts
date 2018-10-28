@@ -1,7 +1,5 @@
 'use strict';
 
-/// <reference path="./file_entry.ts"/>
-
 class FileCollection {
     public files: FileEntry[];
 

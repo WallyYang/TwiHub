@@ -1,7 +1,5 @@
 'use strict';
 
-/// <reference path="./file_collection.ts"/>
-
 function initMouseEvents(url: string, fileCollection: FileCollection) {
     let initEvent = null;
 
@@ -30,7 +28,7 @@ function initMouseEvents(url: string, fileCollection: FileCollection) {
 
                     fetch(url + '/like', {
                         method: 'POST',
-                        mode: "cors",
+                        mode: 'cors',
                         headers: {
                             'Content-type': 'application/x-www-form-urlencoded',
                         },

@@ -1,8 +1,5 @@
 'use strict';
 
-/// <reference path="./file_info.ts"/>
-/// <reference path="./line_entry.ts"/>
-
 class FileEntry {
     public element: HTMLDivElement;
     public info: FileInfo;
