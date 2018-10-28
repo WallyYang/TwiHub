@@ -2,7 +2,7 @@
 
 function createButton(x: number, y: number): void {
     const button = document.createElement('button');
-    const text = document.createTextNode('Like');
+    const text = document.createTextNode('👍Like');
 
     button.appendChild(text);
     button.setAttribute('id', 'like');
@@ -13,7 +13,6 @@ function createButton(x: number, y: number): void {
     console.log(window.innerHeight);
 
     button.style['position'] = 'absolute';
-    button.style['width'] = '50px';
     button.style['left'] = (x - 55).toString() + 'px';
     button.style['top'] = (y - 30).toString() + 'px';
     button.style['padding'] = '10px 20px';
