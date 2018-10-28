@@ -22,7 +22,9 @@ function createButton(x: number, y: number): void {
     body.appendChild(button);
 }
 
-function initMouseEvents(url: string, fileCollection: FileCollection): void {
+function initMouseEvents(): void {
+    const fileCollection = new FileCollection();
+
     let initEvent = null;
 
     function mouseDown(event: MouseEvent): void {
@@ -31,7 +33,7 @@ function initMouseEvents(url: string, fileCollection: FileCollection): void {
 
     function mouseUp(event: MouseEvent): void {
         if (initEvent !== null) {
-            if (event.pageX === initEvent.pageX && event.pageY === initEvent.pageY) {
+            if (Math.abs(event.pageX - initEvent.pageX) + Math.abs(event.pageY - initEvent.pageY) >= 32) {
                 fileCollection.deselect();
             } else {
                 fileCollection.select(

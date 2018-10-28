@@ -2,8 +2,5 @@
 
 const url = 'https://cidb.cf:21027';
 
-const fileCollection = new FileCollection();
-
-initMouseEvents(url, fileCollection);
-initGraph(fileCollection);
-initUpdating(url, fileCollection)
+initMouseEvents();
+initRendering();

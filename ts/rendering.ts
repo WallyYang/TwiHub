@@ -1,6 +1,6 @@
 'use strict';
 
-function initGraph(fileCollection: FileCollection): void {
+function addCanvas(fileCollection: FileCollection): void {
     for (const file of fileCollection.files) {
         const dataElements = file.element.getElementsByClassName('data');
         console.assert(dataElements.length === 1, <any>dataElements);
@@ -23,7 +23,7 @@ function initGraph(fileCollection: FileCollection): void {
     }
 };
 
-function fetchAndRender(url: string, fileCollection: FileCollection): void {
+function fetchAndRender(fileCollection: FileCollection): void {
     for (const file of fileCollection.files) {
         let code = '';
 
@@ -96,14 +96,17 @@ function fetchAndRender(url: string, fileCollection: FileCollection): void {
     }
 }
 
-function initUpdating(url: string, fileCollection: FileCollection): void {
-    let href = '';
+function initRendering(): void {
+    let fileCollection = null;
+    let title = '';
 
     setInterval(() => {
-        if (href !== window.location.href) {
-            fetchAndRender(url, fileCollection);
+        if (title !== document.title) {
+            fileCollection = new FileCollection();
+            addCanvas(fileCollection);
+            fetchAndRender(fileCollection);
 
-            href = window.location.href;
+            title = document.title;
         }
     }, 10);
 }
