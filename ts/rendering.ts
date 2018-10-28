@@ -1,5 +1,30 @@
 'use strict';
 
+function initGraph(fileCollection: FileCollection) {
+    for (const file of fileCollection.files) {
+        for (const line of file.lines) {
+            const cellElement = document.createElement('td');
+
+            cellElement.classList.add('blob-num');
+            cellElement.classList.add('canvas-cell');
+            cellElement.style.width = '75px';
+            cellElement.style.height = '20px';
+
+            const canvasElement = document.createElement('canvas');
+
+            canvasElement.style.position = 'absolute';
+            canvasElement.style.width = '75px';
+            canvasElement.style.height = '20px';
+            // canvasElement.style.background = 'black';
+
+            cellElement.appendChild(canvasElement);
+
+            line.element.insertBefore(cellElement, line.element.childNodes[0]);
+        }
+    }
+
+};
+
 function fetchAndRender(url: string, fileCollection: FileCollection) {
     for (const file of fileCollection.files) {
         let code = '';

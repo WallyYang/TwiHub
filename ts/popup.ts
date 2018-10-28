@@ -48,10 +48,10 @@ function initMouseEvents(url: string, fileCollection: FileCollection) {
     window.onmouseup = mouseUp;
 }
 
-
 function createButton(x: number, y: number) {
-    let button = document.createElement("button");
-    let text = document.createTextNode("Like");
+    const button = document.createElement("button");
+    const text = document.createTextNode("Like");
+
     button.appendChild(text);
     button.setAttribute("id", "like");
 
@@ -61,8 +61,8 @@ function createButton(x: number, y: number) {
     console.log(window.innerHeight);
 
     // button.style.height = "50px";
+    button.style.position = "absolute";
     button.style.width = "50px";
-    button.style.position = "fixed";
     // button.style.right = "5px";
     button.style.right = (window.innerWidth - x).toString() + "px";
     // button.style.right = (50).toString();
@@ -70,6 +70,7 @@ function createButton(x: number, y: number) {
     button.style.bottom = (window.innerHeight - y).toString() + "px";
     // button.style.bottom = (50).toString();
 
-    let body = document.getElementsByTagName("body")[0];
+    const body = document.body;
+
     body.appendChild(button);
 }
