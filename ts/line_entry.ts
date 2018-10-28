@@ -12,14 +12,14 @@ class LineEntry {
         this.element = lineElement;
 
         const numElements = lineElement.getElementsByClassName('blob-num');
-        console.assert(numElements.length === 1 || numElements.length === 2, <any> numElements);
+        console.assert(numElements.length === 1 || numElements.length === 2, <any>numElements);
 
         let lineDone = false;
 
         this.diffCommit = null;
 
         for (const numElement of numElements) {
-            console.assert(numElement instanceof HTMLTableCellElement, <any> numElement);
+            console.assert(numElement instanceof HTMLTableCellElement, <any>numElement);
 
             if (numElement.hasAttribute('id')) {
                 const attribute = numElement.getAttribute('id');
@@ -37,15 +37,15 @@ class LineEntry {
                 lineDone = true;
             }
         }
-        console.assert(lineDone, <any> numElements);
+        console.assert(lineDone, <any>numElements);
 
         const codeElements = lineElement.getElementsByClassName('blob-code');
-        console.assert(codeElements.length === 1, <any> codeElements);
+        console.assert(codeElements.length === 1, <any>codeElements);
 
         for (const codeElement of codeElements) {
-            console.assert(codeElement instanceof HTMLTableCellElement, <any> codeElement);
+            console.assert(codeElement instanceof HTMLTableCellElement, <any>codeElement);
 
-            this.code = (<HTMLTableCellElement> codeElement).innerText;
+            this.code = (<HTMLTableCellElement>codeElement).innerText;
         }
     }
 

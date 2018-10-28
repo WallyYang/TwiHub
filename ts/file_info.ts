@@ -11,15 +11,15 @@ class FileInfo {
         this.element = actionElement;
 
         const buttonElements = actionElement.getElementsByClassName('btn');
-        console.assert(buttonElements.length > 0, <any> buttonElements);
+        console.assert(buttonElements.length > 0, <any>buttonElements);
 
         let pathDone = null;
 
         for (const buttonElement of buttonElements) {
-            console.assert(buttonElement instanceof HTMLAnchorElement, <any> buttonElement);
+            console.assert(buttonElement instanceof HTMLAnchorElement, <any>buttonElement);
 
-            const sections = (<HTMLAnchorElement> buttonElement).pathname.split('/');
-            console.assert(sections.length > 5, <any> sections);
+            const sections = (<HTMLAnchorElement>buttonElement).pathname.split('/');
+            console.assert(sections.length > 5, <any>sections);
 
             if (pathDone) {
                 console.assert(this.user === sections[1], this.user, sections[1]);
@@ -35,6 +35,6 @@ class FileInfo {
                 pathDone = true;
             }
         }
-        console.assert(pathDone, <any> buttonElements);
+        console.assert(pathDone, <any>buttonElements);
     }
 }

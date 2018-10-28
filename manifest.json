@@ -25,5 +25,13 @@
             ]
         }
     ],
+    "page_action": {
+        "default_icon": {
+            "16": "logo/logo_16x16.png",
+            "32": "logo/logo_32x32.png",
+            "48": "logo/logo_48x48.png",
+            "128": "logo/logo_128x128.png"
+        }
+    },
     "manifest_version": 2
 }
