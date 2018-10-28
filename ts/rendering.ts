@@ -85,7 +85,7 @@ function fetchAndRender(url: string, fileCollection: FileCollection) {
                                 context.putImageData(imageData, j, canvasElement.height - lines.length + i);
                             }
 
-                            imageData.data[3] = 255 * (1 - limit + Math.floor(limit));
+                            imageData.data[3] = 255 * (limit - Math.floor(limit));
 
                             context.putImageData(imageData, Math.floor(limit), canvasElement.height - lines.length + i);
                         }
