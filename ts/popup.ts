@@ -18,6 +18,14 @@ function performLike(fileCollection: FileCollection, weight: number): void {
     }
 }
 
+function clearSelection() {
+    if (window.getSelection) {
+        window.getSelection().removeAllRanges();
+    } else if (document.getSelection) {
+        document.getSelection().removeAllRanges();
+    }
+}
+
 function createButton(fileCollection: FileCollection, x: number, y: number): void {
     removeButton();
 
@@ -29,6 +37,7 @@ function createButton(fileCollection: FileCollection, x: number, y: number): voi
 
     button.onmousedown = () => {
         performLike(fileCollection, 10);
+        clearSelection();
     };
 
     button.style['position'] = 'absolute';
