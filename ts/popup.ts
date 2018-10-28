@@ -38,10 +38,38 @@ function initMouseEvents(url: string, fileCollection: FileCollection) {
                         }),
                     });
                 }
+
+                createButton(event.clientX, event.clientY);
             }
         }
     }
 
     window.onmousedown = mouseDown;
     window.onmouseup = mouseUp;
+}
+
+
+function createButton(x: number, y: number) {
+    let button = document.createElement("button");
+    let text = document.createTextNode("Like");
+    button.appendChild(text);
+    button.setAttribute("id", "like");
+
+    console.log(x);
+    console.log(y);
+    console.log(window.innerWidth);
+    console.log(window.innerHeight);
+
+    // button.style.height = "50px";
+    button.style.width = "50px";
+    button.style.position = "fixed";
+    // button.style.right = "5px";
+    button.style.right = (window.innerWidth - x).toString() + "px";
+    // button.style.right = (50).toString();
+    // button.style.bottom = "0";
+    button.style.bottom = (window.innerHeight - y).toString() + "px";
+    // button.style.bottom = (50).toString();
+
+    let body = document.getElementsByTagName("body")[0];
+    body.appendChild(button);
 }
