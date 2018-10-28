@@ -49,17 +49,7 @@ function initMouseEvents(url: string, fileCollection: FileCollection) {
                     }
 
                     if (code !== '') {
-                        fetch(url + '/like', {
-                            method: 'POST',
-                            mode: 'cors',
-                            headers: {
-                                'Content-type': 'application/x-www-form-urlencoded',
-                            },
-                            body: JSON.stringify({
-                                'Repo': file.info.user + '/' + file.info.repo,
-                                'Code': code,
-                            }),
-                        });
+                        sendLike(file.info.user + '/' + file.info.repo, code);
                     }
                 }
 

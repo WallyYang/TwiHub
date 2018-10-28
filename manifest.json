@@ -15,11 +15,12 @@
                 "*://*.github.com/*"
             ],
             "js": [
-                "js/math.js",
                 "js/file_info.js",
                 "js/line_entry.js",
                 "js/file_entry.js",
                 "js/file_collection.js",
+                "js/math.js",
+                "js/ajax.js",
                 "js/popup.js",
                 "js/rendering.js",
                 "js/main.js"
