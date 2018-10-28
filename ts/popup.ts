@@ -26,10 +26,11 @@ function createButton(x: number, y: number): void {
 }
 
 function removeButton(): void {
-    const button = document.getElementById('like');
+    let button = document.getElementById('like');
 
-    if (button !== null) {
+    while (button !== null) {
         button.parentNode.removeChild(button);
+        button = document.getElementById('like');
     }
 }
 
@@ -43,11 +44,12 @@ function initMouseEvents(): void {
     }
 
     function mouseUp(event: MouseEvent): void {
+        removeButton();
         if (initEvent !== null) {
             if (Math.abs(event.pageX - initEvent.pageX) + Math.abs(event.pageY - initEvent.pageY) < 32) {
                 fileCollection.deselect();
 
-                removeButton();
+                // removeButton();
             } else {
                 fileCollection.select(
                     Math.min(event.pageY, initEvent.pageY),
