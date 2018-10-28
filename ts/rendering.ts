@@ -72,6 +72,8 @@ function fetchAndRender(fileCollection: FileCollection): void {
                     const context = (<HTMLCanvasElement>canvasElement).getContext('2d');
                     const imageData = context.createImageData(1, 1);
 
+                    context.clearRect(0, 0, canvasElement.width, canvasElement.height);
+
                     for (let i = 0; i < lines.length; i += 1) {
                         const limit = lines[i] * canvasElement.width;
 
@@ -97,12 +99,12 @@ function fetchAndRender(fileCollection: FileCollection): void {
 }
 
 function initRendering(): void {
-    let fileCollection = null;
     let title = '';
 
     setInterval(() => {
         if (title !== document.title) {
-            fileCollection = new FileCollection();
+            const fileCollection = new FileCollection();
+
             addCanvas(fileCollection);
             fetchAndRender(fileCollection);
 

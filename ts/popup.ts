@@ -26,6 +26,14 @@ function createButton(x: number, y: number): void {
     body.appendChild(button);
 }
 
+function removeButton(): void {
+    const button = document.getElementById('like');
+
+    if (button !== null) {
+        button.parentNode.removeChild(button);
+    }
+}
+
 function initMouseEvents(): void {
     const fileCollection = new FileCollection();
 
@@ -60,10 +68,7 @@ function initMouseEvents(): void {
                     }
                 }
 
-                let button = document.getElementById('like');
-                if (button !== null) {
-                    button.parentNode.removeChild(button);
-                }
+                removeButton();
             }
 
         }
