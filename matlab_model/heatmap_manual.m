@@ -6,7 +6,7 @@ clc;clear
 clc;clear
 %%%%%%%%%%%%%%%%% Input Generation %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Pass in random array denote number of like on each column
-length = 100;
+length = 8;
 index = 1:length;
 
 % make orgIn int and spread out
@@ -14,11 +14,13 @@ index = 1:length;
 % orgIn = round(orgIn, 0);
 % orgIn(orgIn<0) = 0;
 
-orgIn(1:length) = 0;
-orgIn(20:30) = 5;
-orgIn(28:32) = 10;
+% orgIn(1:length) = 0;
+% orgIn(20:30) = 5;
+% orgIn(28:32) = 10;
+% orgIn(60:61) = 10;
 
-orgIn(60:61) = 10;
+orgIn = [0, 0, 10, 0, 2, 3, 0, 0];
+
 
 figure(1)
 clf
@@ -46,14 +48,14 @@ linkaxes(ax, 'x') % link axis
 
 % length, index (for input data), orgIn
 %%%%%%%%%%%%%%%% Begin interpolation calculation %%%%%%%%%%%%%%
-pixInd = 0.1; % value obatined from how dense the pixals are, depending on screen size;
+pixInd = 0.5; % value obatined from how dense the pixals are, depending on screen size;
 hmInd = 1:pixInd:length; % generate heatmap index
 
 % create function hmHeight = mInterp(oriIndex, oriData, querryPt)
 outTest = mInterpl(index, orgIn, hmInd);
 % plot(hmInd, outTest, '-ob')
 
-outTestAvg = mMovAvg(outTest, 8);
+% outTestAvg = mMovAvg(outTest, 8);
 subplot(212)
-plot(hmInd+pixInd, outTestAvg, '-ob')
+plot(hmInd+pixInd, outTest, '-ob')
 % Test if manually compute result match expected output
