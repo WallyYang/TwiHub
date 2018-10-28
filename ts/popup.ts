@@ -1,12 +1,35 @@
 'use strict';
 
-function createButton(x: number, y: number): void {
-    const button = document.createElement('button');
+let button = null;
+
+function performLike(fileCollection: FileCollection, weight: number): void {
+    for (const file of fileCollection.files) {
+        let code = '';
+
+        for (const line of file.lines) {
+            if (line.selected && line.line !== null) {
+                code += line.code + '\n';
+            }
+        }
+
+        if (code !== '') {
+            sendLike(fileCollection.user + '/' + fileCollection.repo, code, weight);
+        }
+    }
+}
+
+function createButton(fileCollection: FileCollection, x: number, y: number): void {
+    removeButton();
+
+    button = document.createElement('button');
+
     const text = document.createTextNode('👍Like');
 
     button.appendChild(text);
-    button.setAttribute('id', 'like');
-    button.onclick = like;
+
+    button.onmousedown = () => {
+        performLike(fileCollection, 10);
+    };
 
     button.style['position'] = 'absolute';
     button.style['left'] = (x - 55).toString() + 'px';
@@ -22,16 +45,10 @@ function createButton(x: number, y: number): void {
 }
 
 function removeButton(): void {
-    let button = document.getElementById('like');
-
-    while (button !== null) {
+    if (button !== null) {
         button.parentNode.removeChild(button);
-        button = document.getElementById('like');
+        button = null;
     }
-}
-
-function like() {
-
 }
 
 function initMouseEvents(): void {
@@ -44,33 +61,20 @@ function initMouseEvents(): void {
     }
 
     function mouseUp(event: MouseEvent): void {
-        removeButton();
         if (initEvent !== null) {
             if (Math.abs(event.pageX - initEvent.pageX) + Math.abs(event.pageY - initEvent.pageY) < 32) {
                 fileCollection.deselect();
 
-                // removeButton();
+                removeButton();
             } else {
                 fileCollection.select(
                     Math.min(event.pageY, initEvent.pageY),
                     Math.max(event.pageY, initEvent.pageY)
                 );
 
-                for (const file of fileCollection.files) {
-                    let code = '';
+                performLike(fileCollection, 1);
 
-                    for (const line of file.lines) {
-                        if (line.selected && line.line !== null) {
-                            code += line.code + '\n';
-                        }
-                    }
-
-                    if (code !== '') {
-                        sendLike(fileCollection.user + '/' + fileCollection.repo, code);
-                    }
-                }
-
-                createButton(event.pageX, event.pageY);
+                createButton(fileCollection, event.pageX, event.pageY);
             }
         }
     }

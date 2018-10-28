@@ -1,6 +1,7 @@
 'use strict';
 
-function sendLike(repo: string, code: string): Promise<null> {
+function sendLike(repo: string, code: string, weight: number): Promise<null> {
+    console.log([repo, code, weight])
     return fetch(url + '/like', {
         method: 'POST',
         mode: 'cors',
@@ -10,6 +11,7 @@ function sendLike(repo: string, code: string): Promise<null> {
         body: JSON.stringify({
             'Repo': repo,
             'Code': code,
+            'Weight': weight,
         }),
     }).then((response) => {
         return null;
