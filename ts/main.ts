@@ -6,5 +6,4 @@ const fileCollection = new FileCollection();
 
 initMouseEvents(url, fileCollection);
 initGraph(fileCollection);
-
-fetchAndRender(url, fileCollection);
+initUpdating(url, fileCollection)

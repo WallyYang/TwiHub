@@ -1,6 +1,6 @@
 'use strict';
 
-function createButton(x: number, y: number) {
+function createButton(x: number, y: number): void {
     const button = document.createElement('button');
     const text = document.createTextNode('Like');
 
@@ -22,14 +22,14 @@ function createButton(x: number, y: number) {
     body.appendChild(button);
 }
 
-function initMouseEvents(url: string, fileCollection: FileCollection) {
+function initMouseEvents(url: string, fileCollection: FileCollection): void {
     let initEvent = null;
 
-    function mouseDown(event: MouseEvent) {
+    function mouseDown(event: MouseEvent): void {
         initEvent = event;
     }
 
-    function mouseUp(event: MouseEvent) {
+    function mouseUp(event: MouseEvent): void {
         if (initEvent !== null) {
             if (event.pageX === initEvent.pageX && event.pageY === initEvent.pageY) {
                 fileCollection.deselect();

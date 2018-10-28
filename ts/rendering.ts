@@ -1,6 +1,6 @@
 'use strict';
 
-function initGraph(fileCollection: FileCollection) {
+function initGraph(fileCollection: FileCollection): void {
     for (const file of fileCollection.files) {
         const dataElements = file.element.getElementsByClassName('data');
         console.assert(dataElements.length === 1, <any>dataElements);
@@ -23,7 +23,7 @@ function initGraph(fileCollection: FileCollection) {
     }
 };
 
-function fetchAndRender(url: string, fileCollection: FileCollection) {
+function fetchAndRender(url: string, fileCollection: FileCollection): void {
     for (const file of fileCollection.files) {
         let code = '';
 
@@ -94,4 +94,16 @@ function fetchAndRender(url: string, fileCollection: FileCollection) {
             }
         });
     }
+}
+
+function initUpdating(url: string, fileCollection: FileCollection): void {
+    let href = '';
+
+    setInterval(() => {
+        if (href !== window.location.href) {
+            fetchAndRender(url, fileCollection);
+
+            href = window.location.href;
+        }
+    }, 10);
 }
