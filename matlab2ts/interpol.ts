@@ -7,7 +7,7 @@ function interpol(orgId: number[], orgData: number[], qId: number[]) {
 	let qData: number[] = [];	// declear output data qData
 
 	// Compute heatmap height at each point
-	for (let i in orgId) {
+	for (let i in qId) {
 		let qPt: number = qId[i];	// querry point
 
 		// Get left and right hand points
@@ -26,7 +26,7 @@ function interpol(orgId: number[], orgData: number[], qId: number[]) {
 // Calculate heatmap height at given point qPt using ratios
 function mSingleInterpl(x1: number, y1: number, x2: number, y2: number, qPt: number){
 	if (x1 == x2) {
-		return y1;
+		return y1;	// in case a int querry point
 	}
 	
 	let qDataPt: number = y1 + (qPt - x1) * (y2 - y1) / (x2 - x1);
@@ -34,8 +34,9 @@ function mSingleInterpl(x1: number, y1: number, x2: number, y2: number, qPt: num
 	return qDataPt;
 }
 
-let colId: number[] = [1, 2, 3, 4, 5, 6];							// column index
-let numOfLikes: number[] = [0, 0, 10, 0, 2, 3];						// number of likes
+let colId: number[] = [1, 2, 3, 4, 5, 6, 7, 8];							// column index
+let numOfLikes: number[] = [0, 0, 10, 0, 2, 3, 0, 0];						// number of likes
+// TODO: autogenerate hmId based on given interval
 let hmId: number[] = [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6];	// heatmap index
 
 
