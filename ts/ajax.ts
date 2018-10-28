@@ -12,7 +12,7 @@ function sendLike(repo: string, code: string): Promise<null> {
             'Code': code,
         }),
     }).then((response) => {
-        return response.json();
+        return null;
     });
 }
 
