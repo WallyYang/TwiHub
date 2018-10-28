@@ -8,14 +8,14 @@ function initGraph(fileCollection: FileCollection) {
         for (const dataElement of dataElements) {
             console.assert(dataElement instanceof HTMLDivElement, <any>dataElement);
 
-            (<HTMLDivElement>dataElement).style['padding-left'] = '75px';
+            (<HTMLDivElement>dataElement).style['padding-left'] = '60px';
 
             const canvasElement = document.createElement('canvas');
 
             canvasElement.style['position'] = 'absolute';
             canvasElement.style['left'] = '0';
             canvasElement.style['top'] = '0';
-            canvasElement.style['width'] = '75px';
+            canvasElement.style['width'] = '60px';
             canvasElement.style['height'] = '100%';
 
             dataElement.appendChild(canvasElement);
@@ -72,13 +72,14 @@ function fetchAndRender(url: string, fileCollection: FileCollection) {
                         const context = (<HTMLCanvasElement>canvasElement).getContext('2d');
                         const imageData = context.createImageData(1, 1);
 
-                        imageData.data[0] = 0;
-                        imageData.data[1] = 0;
-                        imageData.data[2] = 0;
-
                         for (let i = 0; i < lines.length; i += 1) {
                             const limit = lines[i] * canvasElement.width;
 
+                            const color = colorInterpolation(lines[i]);
+
+                            imageData.data[0] = color[0];
+                            imageData.data[1] = color[1];
+                            imageData.data[2] = color[2];
                             imageData.data[3] = 255;
 
                             for (let j = 0; j < Math.floor(limit); j += 1) {

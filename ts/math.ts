@@ -50,3 +50,39 @@ function normalize(data: number[]): number[] {
 
     return result;
 }
+
+function colorInterpolation(y: number): [number, number, number] {
+    const colors = [
+        [235, 237, 240],
+        [198, 228, 139],
+        [123, 201, 111],
+        [35, 154, 59],
+        [25, 97, 39],
+    ];
+
+    if (y < 0.1) {
+        return [
+            singleInterpolation(0, colors[0][0], 0.1, colors[1][0], y),
+            singleInterpolation(0, colors[0][1], 0.1, colors[1][1], y),
+            singleInterpolation(0, colors[0][2], 0.1, colors[1][2], y),
+        ];
+    } else if (y < 0.5) {
+        return [
+            singleInterpolation(0.1, colors[1][0], 0.4, colors[2][0], y),
+            singleInterpolation(0.1, colors[1][1], 0.4, colors[2][1], y),
+            singleInterpolation(0.1, colors[1][2], 0.4, colors[2][2], y),
+        ];
+    } else if (y < 0.9) {
+        return [
+            singleInterpolation(0.4, colors[2][0], 0.7, colors[3][0], y),
+            singleInterpolation(0.4, colors[2][1], 0.7, colors[3][1], y),
+            singleInterpolation(0.4, colors[2][2], 0.7, colors[3][2], y),
+        ];
+    } else {
+        return [
+            singleInterpolation(0.7, colors[3][0], 1, colors[4][0], y),
+            singleInterpolation(0.7, colors[3][1], 1, colors[4][1], y),
+            singleInterpolation(0.7, colors[3][2], 1, colors[4][2], y),
+        ];
+    }
+}
