@@ -13,7 +13,10 @@ function performLike(fileCollection: FileCollection, weight: number): void {
         }
 
         if (code !== '') {
-            sendLike(fileCollection.user + '/' + fileCollection.repo, code, weight);
+            sendLike(fileCollection.user + '/' + fileCollection.repo, code, weight).then(() => {
+                // notice: assume the number of files remain the same
+                fetchAndRender(new FileCollection());
+            });
         }
     }
 }
