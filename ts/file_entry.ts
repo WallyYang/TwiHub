@@ -1,8 +1,5 @@
 'use strict';
 
-/// <reference path="./file_info.ts"/>
-/// <reference path="./line_entry.ts"/>
-
 class FileEntry {
     public element: HTMLDivElement;
     public info: FileInfo;
@@ -12,28 +9,28 @@ class FileEntry {
         this.element = fileElement;
 
         const actionElements = fileElement.getElementsByClassName('file-actions');
-        console.assert(actionElements.length === 1, <any> actionElements);
+        console.assert(actionElements.length === 1, <any>actionElements);
 
         for (const actionElement of actionElements) {
-            console.assert(actionElement instanceof HTMLDivElement, <any> actionElement);
+            console.assert(actionElement instanceof HTMLDivElement, <any>actionElement);
 
-            this.info = new FileInfo(<HTMLDivElement> actionElement);
+            this.info = new FileInfo(<HTMLDivElement>actionElement);
         }
 
         const dataElements = fileElement.getElementsByClassName('data');
-        console.assert(dataElements.length === 1, <any> dataElements);
+        console.assert(dataElements.length === 1, <any>dataElements);
 
         this.lines = [];
 
         for (const dataElement of dataElements) {
-            console.assert(dataElement instanceof HTMLDivElement, <any> dataElement);
+            console.assert(dataElement instanceof HTMLDivElement, <any>dataElement);
 
             const lineElements = dataElement.getElementsByTagName('tr');
 
             for (const lineElement of lineElements) {
-                console.assert(lineElement instanceof HTMLTableRowElement, <any> lineElement);
+                console.assert(lineElement instanceof HTMLTableRowElement, <any>lineElement);
 
-                this.lines.push(new LineEntry(<HTMLTableRowElement> lineElement));
+                this.lines.push(new LineEntry(<HTMLTableRowElement>lineElement));
             }
         }
     }

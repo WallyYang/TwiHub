@@ -1,7 +1,5 @@
 'use strict';
 
-/// <reference path="./file_collection.ts"/>
-
 function initMouseEvents(url: string, fileCollection: FileCollection) {
     let initEvent = null;
 

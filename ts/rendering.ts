@@ -1,7 +1,5 @@
 'use strict';
 
-/// <reference path="./file_collection.ts"/>
-
 function fetchAndRender(url: string, fileCollection: FileCollection) {
     for (const file of fileCollection.files) {
         let code = '';

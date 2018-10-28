@@ -1,7 +1,5 @@
 'use strict';
 
-/// <reference path="./file_entry.ts"/>
-
 class FileCollection {
     public files: FileEntry[];
 
@@ -11,9 +9,9 @@ class FileCollection {
         this.files = [];
 
         for (const fileElement of fileElements) {
-            console.assert(fileElement instanceof HTMLDivElement, <any> fileElement);
+            console.assert(fileElement instanceof HTMLDivElement, <any>fileElement);
 
-            this.files.push(new FileEntry(<HTMLDivElement> fileElement));
+            this.files.push(new FileEntry(<HTMLDivElement>fileElement));
         }
     }
 
