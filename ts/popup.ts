@@ -16,6 +16,10 @@ function createButton(x: number, y: number): void {
     button.style['width'] = '50px';
     button.style['left'] = (x - 55).toString() + 'px';
     button.style['top'] = (y - 30).toString() + 'px';
+    button.style['padding'] = '10px 20px';
+    button.style['border'] = 'none';
+    button.style['background-color'] = '#4CAF50';
+    button.style['color'] = 'white';
 
     const body = document.body;
 
