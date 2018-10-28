@@ -26,13 +26,20 @@
             ]
         }
     ],
-    "page_action": {
-        "default_icon": {
-            "16": "logo/logo_16.png",
-            "32": "logo/logo_32.png",
-            "48": "logo/logo_48.png",
+    "browser_action": {
+        "default_icon": {                    
+            "16": "logo/logo_16.png",           
+            "32": "logo/logo_32.png",           
+            "48": "logo/logo_48.png",           
             "128": "logo/logo_128.png"
-        }
+        },
+        "default_title": "TwiHub"
+    },
+    "icons": {
+        "16": "logo/logo_16.png",           
+            "32": "logo/logo_32.png",           
+            "48": "logo/logo_48.png",           
+            "128": "logo/logo_128.png"
     },
     "manifest_version": 2
 }
