@@ -1,7 +1,8 @@
 'use strict';
 
 function sendLike(repo: string, code: string, weight: number): Promise<null> {
-    console.log([repo, code, weight])
+    console.log([repo, code, weight]);
+
     return fetch(url + '/like', {
         method: 'POST',
         mode: 'cors',
@@ -19,6 +20,8 @@ function sendLike(repo: string, code: string, weight: number): Promise<null> {
 }
 
 function sendRender(repo: string, code: string): Promise<number[]> {
+    console.log([repo, code]);
+
     return fetch(url + '/render', {
         method: 'POST',
         mode: 'cors',

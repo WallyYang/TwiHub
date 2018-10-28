@@ -34,6 +34,8 @@ function fetchAndRender(fileCollection: FileCollection): void {
         }
 
         sendRender(fileCollection.user + '/' + fileCollection.repo, code).then((frequencies) => {
+            console.log(frequencies);
+
             const points = [];
 
             if (frequencies.length > 0) {
