@@ -44,9 +44,10 @@ function initMouseEvents(): void {
 
     function mouseUp(event: MouseEvent): void {
         if (initEvent !== null) {
-            if (Math.abs(event.pageX - initEvent.pageX) + Math.abs(event.pageY - initEvent.pageY) >= 32) {
+            if (Math.abs(event.pageX - initEvent.pageX) + Math.abs(event.pageY - initEvent.pageY) < 32) {
                 fileCollection.deselect();
-                createButton(event.pageX, event.pageY);
+
+                removeButton();
             } else {
                 fileCollection.select(
                     Math.min(event.pageY, initEvent.pageY),
@@ -67,9 +68,8 @@ function initMouseEvents(): void {
                     }
                 }
 
-                removeButton();
+                createButton(event.pageX, event.pageY);
             }
-
         }
     }
 
