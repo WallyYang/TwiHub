@@ -50,9 +50,11 @@ class LineEntry {
     }
 
     public select(top: number, bottom: number): void {
-        const bound = this.element.getBoundingClientRect();
+        const elementBound = this.element.getBoundingClientRect();
+        const bodyBound = document.body.getBoundingClientRect();
 
-        this.selected = top <= bound.bottom && bottom >= bound.top;
+        this.selected = top <= elementBound.bottom - bodyBound.top
+            && bottom >= elementBound.top - bodyBound.top;
     }
 
     public deselect(): void {

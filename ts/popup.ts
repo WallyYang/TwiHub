@@ -1,5 +1,27 @@
 'use strict';
 
+function createButton(x: number, y: number) {
+    const button = document.createElement('button');
+    const text = document.createTextNode('Like');
+
+    button.appendChild(text);
+    button.setAttribute('id', 'like');
+
+    console.log(x);
+    console.log(y);
+    console.log(window.innerWidth);
+    console.log(window.innerHeight);
+
+    button.style.position = 'absolute';
+    button.style.width = '50px';
+    button.style.left = (x - 55).toString() + 'px';
+    button.style.top = (y - 30).toString() + 'px';
+
+    const body = document.body;
+
+    body.appendChild(button);
+}
+
 function initMouseEvents(url: string, fileCollection: FileCollection) {
     let initEvent = null;
 
@@ -9,12 +31,12 @@ function initMouseEvents(url: string, fileCollection: FileCollection) {
 
     function mouseUp(event: MouseEvent) {
         if (initEvent !== null) {
-            if (event.clientX === initEvent.clientX && event.clientY === initEvent.clientY) {
+            if (event.pageX === initEvent.pageX && event.pageY === initEvent.pageY) {
                 fileCollection.deselect();
             } else {
                 fileCollection.select(
-                    Math.min(event.clientY, initEvent.clientY),
-                    Math.max(event.clientY, initEvent.clientY)
+                    Math.min(event.pageY, initEvent.pageY),
+                    Math.max(event.pageY, initEvent.pageY)
                 );
 
                 for (const file of fileCollection.files) {
@@ -39,38 +61,11 @@ function initMouseEvents(url: string, fileCollection: FileCollection) {
                     });
                 }
 
-                createButton(event.clientX, event.clientY);
+                createButton(event.pageX, event.pageY);
             }
         }
     }
 
     window.onmousedown = mouseDown;
     window.onmouseup = mouseUp;
-}
-
-function createButton(x: number, y: number) {
-    const button = document.createElement("button");
-    const text = document.createTextNode("Like");
-
-    button.appendChild(text);
-    button.setAttribute("id", "like");
-
-    console.log(x);
-    console.log(y);
-    console.log(window.innerWidth);
-    console.log(window.innerHeight);
-
-    // button.style.height = "50px";
-    button.style.position = "absolute";
-    button.style.width = "50px";
-    // button.style.right = "5px";
-    button.style.right = (window.innerWidth - x).toString() + "px";
-    // button.style.right = (50).toString();
-    // button.style.bottom = "0";
-    button.style.bottom = (window.innerHeight - y).toString() + "px";
-    // button.style.bottom = (50).toString();
-
-    const body = document.body;
-
-    body.appendChild(button);
 }

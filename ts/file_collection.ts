@@ -3,8 +3,8 @@
 class FileCollection {
     public files: FileEntry[];
 
-    constructor(body: HTMLBodyElement) {
-        const fileElements = body.getElementsByClassName('file');
+    constructor() {
+        const fileElements = document.body.getElementsByClassName('file');
 
         this.files = [];
 

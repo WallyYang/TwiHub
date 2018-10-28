@@ -2,7 +2,7 @@
 
 const url = 'https://cidb.cf:21027';
 
-const fileCollection = new FileCollection(<HTMLBodyElement>document.body);
+const fileCollection = new FileCollection();
 
 initMouseEvents(url, fileCollection);
 initGraph(fileCollection);
